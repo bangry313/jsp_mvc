@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ezen</groupId>
-    <artifactId>project_jsp_shoppingmall</artifactId>
+    <artifactId>jsp_mvc</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>project_jsp_shoppingmall</name>
+    <name>jsp_mvc</name>
     <packaging>war</packaging>
 
     <properties>

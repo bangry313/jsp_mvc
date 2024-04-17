@@ -12,18 +12,18 @@
 </head>
 
 <body>
-  
+
   <div class="d-flex" id="wrapper">
-    
+
     <!-- Sidebar Start -->
-    <jsp:include page="/module/sidebar.jsp" />
+    <jsp:include page="/WEB-INF/views/fragment/sidebar.jsp" />
     <!-- Sidebar End -->
 
     <!-- Page Content Start -->
     <div id="page-content-wrapper">
-      
+
       <!-- Nav Start -->
-      <jsp:include page="/module/nav.jsp" />
+      <jsp:include page="/WEB-INF/views/fragment/nav.jsp" />
       <!-- Nav End -->
 
       <!-- Contents Start -->
