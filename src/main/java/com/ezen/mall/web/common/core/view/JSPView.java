@@ -1,5 +1,7 @@
 package com.ezen.mall.web.common.core.view;
 
+import com.ezen.mall.web.common.core.controller.Model;
+
 import java.io.IOException;
 import java.util.Map;
 
@@ -25,7 +27,7 @@ public class JSPView {
 		dispatcher.forward(request, response);
 	}
 
-	public void render(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response)
+	public void render(Model model, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 모델의 속성을 HttpServletReqeust의 속성으로 변환
 		convertModelToRequestAttribute(model, request);
@@ -33,9 +35,9 @@ public class JSPView {
 		dispatcher.forward(request, response);
 	}
 
-	private void convertModelToRequestAttribute(Map<String, Object> model, HttpServletRequest request) {
+	private void convertModelToRequestAttribute(Model model, HttpServletRequest request) {
 		// Stream API와 람다식 활용
-		model.forEach((key, value) -> request.setAttribute(key, value));
+		model.getMap().forEach((key, value) -> request.setAttribute(key, value));
 	}
 }
 

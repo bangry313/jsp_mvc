@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.ezen.mall.web.common.core.view.JSPView;
 import com.ezen.mall.web.sample.controller.HelloControllerV2;
+import com.ezen.mall.web.sample.controller.TodayController;
 
 /**
  * 프론트 컨트롤러 서블릿 구현
@@ -25,6 +26,7 @@ public class FrontControllerServletV2 extends HttpServlet {
 		String contextPath = getServletContext().getContextPath();
 		// 웹 클라이언트 요청에 대한 세부 컨트롤러 등록
 		controllerMap.put(contextPath + "/mvc/sample/hello", new HelloControllerV2());
+		//controllerMap.put(contextPath + "/mvc/sample/today", new TodayController());
 	}
 
 	/** 요청 방식에 상관없이 웹 클라이언트 모든 요청 처리 */

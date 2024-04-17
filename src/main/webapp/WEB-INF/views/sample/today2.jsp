@@ -1,3 +1,4 @@
+<%@ page import="java.util.Calendar" %>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -8,7 +9,9 @@
     <title>JSP_MVC</title>
 </head>
 <body>
-<h2>${message}</h2>
-<h2>${name}</h2>
+
+<h2>${today}</h2>
+<h2>수신한 아이이 : ${id}</h2>
+<h2>새로만든 JSP 입니다..</h2>
 </body>
 </html>

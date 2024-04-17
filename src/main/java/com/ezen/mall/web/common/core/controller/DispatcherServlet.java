@@ -19,11 +19,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ezen.mall.web.common.core.adapter.HandlerAdapter;
+import com.ezen.mall.web.common.core.adapter.RequestMappingController3Adapter;
 import com.ezen.mall.web.common.core.adapter.RequestMappingHandlerAdapter;
 import com.ezen.mall.web.common.core.view.JSPView;
 
 /**
- * 프론트 컨트롤러 서블릿 구현
+ * MVC 디자인 패턴 + 프론트 컨트롤러 패턴 + 어댑터 패턴 적용 서블릿 구현
  * 웹 클라이언트의 요청에 대한 단일 진입점 역할 (메인 컨트롤러)
  */
 @WebServlet(name = "/frontController", urlPatterns = { "/mvc/*" })
@@ -70,6 +71,7 @@ public class DispatcherServlet extends HttpServlet {
 	 */
 	private void initHandlerAdapters() {
 		handlerAdapters.add(new RequestMappingHandlerAdapter());
+		handlerAdapters.add(new RequestMappingController3Adapter());
 	}
 
 	/** 요청 방식에 상관없이 웹 클라이언트 모든 요청 처리 */
@@ -132,7 +134,7 @@ public class DispatcherServlet extends HttpServlet {
 		}else {
 			// 포워드
 			JSPView view = viewResolver.resolve(mav.getViewName());
-			view.render(mav.getModel(), request, response);
+			view.render(new Model(mav.getModel()), request, response);
 		}
 	}
 }

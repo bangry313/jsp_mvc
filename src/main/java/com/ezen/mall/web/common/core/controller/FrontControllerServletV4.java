@@ -2,6 +2,8 @@ package com.ezen.mall.web.common.core.controller;
 
 import com.ezen.mall.web.common.core.view.JSPView;
 import com.ezen.mall.web.sample.controller.HelloControllerV4;
+import com.ezen.mall.web.sample.controller.TodayController;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
@@ -9,6 +11,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +26,7 @@ public class FrontControllerServletV4 extends HttpServlet {
 	public void init() throws ServletException {
 		String contextPath = getServletContext().getContextPath();
 		controllerMap.put(contextPath + "/mvc/sample/hello", new HelloControllerV4());
+		//controllerMap.put(contextPath + "/mvc/sample/today", new TodayController());
 		viewResolver = new ViewResolver();
 	}
 
@@ -40,7 +44,7 @@ public class FrontControllerServletV4 extends HttpServlet {
 		// 웹 클라이언트 요청파라메터들을 맵에 저장
 		Map<String, String> paramMap = createParamMap(request);
 		// 모델 생성
-		Map<String, Object> model = new HashMap<String, Object>();
+		Model model = new Model();
 		// 세부 컨트롤러 호출(실행) JSP 논리적 이름 반환
 		String logicalViewName = controller.process(paramMap, model, request, response);
 		// 뷰 선택

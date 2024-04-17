@@ -2,6 +2,8 @@ package com.ezen.mall.web.common.core.controller;
 
 import com.ezen.mall.web.common.core.view.JSPView;
 import com.ezen.mall.web.sample.controller.HelloControllerV3;
+import com.ezen.mall.web.sample.controller.TodayController;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
@@ -29,6 +31,7 @@ public class FrontControllerServletV3 extends HttpServlet {
 		String contextPath = getServletContext().getContextPath();
 		// 웹 클라이언트 요청에 대한 세부 컨트롤러 등록
 		controllerMap.put(contextPath + "/mvc/sample/hello", new HelloControllerV3());
+//		controllerMap.put(contextPath + "/mvc/sample/today", new TodayController());
 		viewResolver = new ViewResolver();
 	}
 
@@ -50,10 +53,13 @@ public class FrontControllerServletV3 extends HttpServlet {
 		// 세부 컨트롤러 호출(실행)
 		ModelAndView mav = controller.process(paramMap);
 		// 논리적 뷰 이름 반환
-		String logicalViewName = mav.getViewName();
+		String logicalViewName = mav.getViewName(); // /sample/hello
 		// 뷰 선택
 		JSPView view = viewResolver.resolve(logicalViewName);
-		view.render(mav.getModel(), request, response);
+//		Map<String, Object> map = mav.getModel();
+//		Model model = new Model();
+//		model.setMap(map);
+//		view.render(model, request, response);
 	}
 
 	private Map<String, String> createParamMap(HttpServletRequest request) {

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.ezen.mall.web.sample.controller.HelloControllerV1;
+import com.ezen.mall.web.sample.controller.TodayController;
 
 /**
  * 프론트 컨트롤러 서블릿 구현
@@ -17,7 +18,8 @@ import com.ezen.mall.web.sample.controller.HelloControllerV1;
  */
 //@WebServlet(name="/frontController", urlPatterns = {"/mvc/*"})
  public class FrontControllerServletV1 extends HttpServlet {
-
+	
+	// 웹 클라이언트 요청 처리를 위한 세부컨트롤러 생성 및 저장을 위한 맵
 	private Map<String, ControllerV1> controllerMap = new HashMap<>();
 	
 	@Override
@@ -25,6 +27,7 @@ import com.ezen.mall.web.sample.controller.HelloControllerV1;
 		String contextPath = getServletContext().getContextPath();
 		// 웹 클라이언트 요청에 대한 세부 컨트롤러 등록
 		controllerMap.put(contextPath + "/mvc/sample/hello", new HelloControllerV1());
+//		controllerMap.put(contextPath + "/mvc/sample/today", new TodayController());
 	}
 
 	/** 요청 방식에 상관없이 웹 클라이언트 모든 요청 처리 */

@@ -1,38 +1,33 @@
 package com.ezen.mall.web.common.core.adapter;
 
+import com.ezen.mall.web.common.core.controller.ControllerV3;
+import com.ezen.mall.web.common.core.controller.Model;
+import com.ezen.mall.web.common.core.controller.ModelAndView;
+import com.ezen.mall.web.common.core.handler.Handler;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import com.ezen.mall.web.common.core.controller.ControllerV4;
-import com.ezen.mall.web.common.core.controller.Model;
-import com.ezen.mall.web.common.core.controller.ModelAndView;
-import com.ezen.mall.web.common.core.handler.Handler;
 
-public class RequestMappingHandlerAdapter implements HandlerAdapter {
+public class RequestMappingController3Adapter implements HandlerAdapter {
 
 	@Override
 	public boolean supports(Object handler) {
-		return handler instanceof Handler;
+		return handler instanceof ControllerV3;
 	}
 
 	@Override
 	public ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws ServletException, IOException {
-		Handler handlerObject = (Handler) handler;
+		ControllerV3 controllerV3 = (ControllerV3) handler;
 		Map<String, String> paramMap = createParamMap(request);
-
-		Model model = new Model();
-
-		String viewName = handlerObject.process(paramMap, model, request, response);
-
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.setModel(model.getMap());
+		ModelAndView mav = controllerV3.process(paramMap);
 		return mav;
 	}
 
