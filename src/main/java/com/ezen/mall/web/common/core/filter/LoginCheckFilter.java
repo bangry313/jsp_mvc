@@ -20,6 +20,12 @@ public class LoginCheckFilter implements Filter {
         loginNoCheckList = new ArrayList<>();
         loginNoCheckList.add("/mvc/");
         loginNoCheckList.add("/mvc/sample/hello");
+        loginNoCheckList.add("/mvc/sample/today");
+        loginNoCheckList.add("/mvc/member/register");
+        loginNoCheckList.add("/mvc/member/login");
+        loginNoCheckList.add("/mvc/member/login-action");
+        loginNoCheckList.add("/mvc/board/list");
+        loginNoCheckList.add("/mvc/board/read");
     }
 
     @Override
@@ -31,7 +37,10 @@ public class LoginCheckFilter implements Filter {
             System.out.println("[debug] : 인증이 필요한 요청");
             HttpSession session = httpRequest.getSession(false);
             if (session == null ||  session.getAttribute("loginMember") == null) {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+                httpRequest.setAttribute("message", "로그인 사용자만 접근이 허용된 페이지입니다.");
+                String referer = httpRequest.getHeader("referer");
+                request.setAttribute("referer", referer);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/mvc/member/login");
                 dispatcher.forward(request, response);
             }
         }

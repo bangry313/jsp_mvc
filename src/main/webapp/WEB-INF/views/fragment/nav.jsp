@@ -29,23 +29,31 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     게시판
                 </a>
-
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/board/list.html">자유게시판</a>
-                    <a class="dropdown-item" href="#">만땅 자료실</a>
-                    <a class="dropdown-item" href="#">공지사항</a>
-                    <a class="dropdown-item" href="#">묻고 답하기</a>
-                    <div class="dropdown-divider">묻고 답하기</div>
-                    <a class="dropdown-item" href="#">토론방</a>
+                    <c:forEach var="board" items="${boardList}">
+                        <a class="dropdown-item" href="/mvc/board/list?boardId=${board.boardId}">${board.title}</a>
+                    </c:forEach>
                 </div>
             </li>
 
-            <li class="nav-item">
-                <a class="btn btn-outline-primary" href="/mvc/member/register">회원가입</a>
-            </li>
-            <li class="nav-item">
-                <a class="btn btn-outline-primary" href="/mvc/member/login">로그인</a>
-            </li>
+            <c:choose>
+                <c:when test="${empty loginMember}">
+                    <li class="nav-item">
+                        <a class="btn btn-outline-primary" href="/mvc/member/register">회원가입</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-primary" href="/mvc/member/login">로그인</a>
+                    </li>
+                </c:when>
+                <c:otherwise>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-primary">${loginMember.name}님 로그인중</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-danger" href="/mvc/member/logout-action">로그아웃</a>
+                    </li>
+                </c:otherwise>
+            </c:choose>
         </ul>
     </div>
 </nav>

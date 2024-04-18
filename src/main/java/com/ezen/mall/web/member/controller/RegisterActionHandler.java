@@ -43,14 +43,16 @@ public class RegisterActionHandler implements Handler {
         if(!errors.isEmpty()) {
             model.setAttribute("errors", errors);
             viewName = "/member/register";
-        }
-        // 회원 가입 처리
-        Member member = new Member(id, passwd, name, email, "default.jpg");
-        member = memberService.registerMember(member);
+            return viewName;
+        }else {
+            // 회원 가입 처리
+            Member member = new Member(id, passwd, name, email, "default.jpg");
+            member = memberService.registerMember(member);
 
-        // 회원 가입 정보를 세션에 저장
-        HttpSession session = request.getSession();
-        session.setAttribute("member", member);
-        return viewName;
+            // 회원 가입 정보를 세션에 저장
+            HttpSession session = request.getSession();
+            session.setAttribute("member", member);
+            return viewName;
+        }
     }
 }
