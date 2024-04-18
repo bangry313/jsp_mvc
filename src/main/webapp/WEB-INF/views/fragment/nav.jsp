@@ -41,10 +41,10 @@
             </li>
 
             <li class="nav-item">
-                <a class="btn btn-outline-primary" href="/member/register.jsp">회원가입</a>
+                <a class="btn btn-outline-primary" href="/mvc/member/register">회원가입</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-outline-primary" href="/member/login.jsp">로그인</a>
+                <a class="btn btn-outline-primary" href="/mvc/member/login">로그인</a>
             </li>
         </ul>
     </div>

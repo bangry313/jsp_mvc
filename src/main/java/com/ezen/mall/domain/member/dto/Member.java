@@ -17,6 +17,10 @@ public class Member {
         this(id, passwd, name, email, null, null);
     }
 
+    public Member(String id, String passwd, String name, String email, String picture) {
+        this(id, passwd, name, email, null, picture);
+    }
+
     public Member(String id, String passwd, String name, String email, String regdate, String picture) {
         this.id = id;
         this.passwd = passwd;
