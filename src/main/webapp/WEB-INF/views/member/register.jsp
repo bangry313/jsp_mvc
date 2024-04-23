@@ -52,8 +52,8 @@
                       <span class="input-icon">
                         <i class="bx bx-user-pin"></i>
                       </span>
-                      <input type="text" class="form-control" required id="id" name="id"  autofocus placeholder="아이디"  value="${errors.id}" style="${not empty errors.id ? 'color:red' : ''}">
 
+                      <input type="text" class="form-control" required id="id" name="id"  autofocus placeholder="아이디"  value="${errors.id}" style="${not empty errors.id ? 'color:red' : ''}">
                       <div id="dupResult" class="mt-2"></div>
                     </div>
 

@@ -22,8 +22,10 @@ const eventRegister = function () {
 const handleChangeInput = async function (event) {
     let inputId = event.target.value;
     const url = `/mvc/member/idcheck?id=${inputId}`;
+
     const object = null;
     let resultMessage = null;
+    // 유효성 검증
     if (inputId.length >= 6 && inputId.length <= 10) {
         const object = await httpRequest(url);
         if (object.result) {
