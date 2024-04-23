@@ -141,6 +141,33 @@ public class JdbcMemberDao implements  MemberDao{
         return  list;
     }
 
+    @Override
+    public boolean findCheckId(String id) throws SQLException {
+        boolean existId = false;
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT member_id")
+           .append(" FROM member")
+           .append(" WHERE member_id = ?");
+        Connection con = connectionFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            pstmt = con.prepareStatement(sql.toString());
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+            existId = rs.next();
+        } finally {
+            try {
+                if(rs != null)    rs.close();
+                if(pstmt != null) pstmt.close();
+                if(con !=  null)  con.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return  existId;
+    }
+
     public static void main(String[] args) throws Exception {
         MemberDao memberDao = new JdbcMemberDao();
 //        MemberDao memberDao = new MybatisMemberDao();
@@ -150,13 +177,15 @@ public class JdbcMemberDao implements  MemberDao{
 
         //Member member = memberDao.findById("bangry");
         //System.out.println(member);
-        boolean isMember = memberDao.findByIdNPasswd("bangry", "1111");
-        System.out.println(isMember);
-
-        List<Member> list = memberDao.findByAll();
-        for (Member member : list) {
-            System.out.println(member);
-        }
+//        boolean isMember = memberDao.findByIdNPasswd("bangry", "1111");
+//        System.out.println(isMember);
+//
+//        List<Member> list = memberDao.findByAll();
+//        for (Member member : list) {
+//            System.out.println(member);
+//        }
+        boolean exit = memberDao.findCheckId("kille");
+        System.out.println(exit);
     }
 
 }

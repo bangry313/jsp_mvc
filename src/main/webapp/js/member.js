@@ -1,3 +1,7 @@
+const httpRequest = function (url) {
+    return fetch(url).then(response => response.json());
+}
+
 /** 이벤트타겟에 이벤트 핸들러 연결(등록) */
 const eventRegister = function () {
     document.registerForm.addEventListener("submit", handleSubmitButton);
@@ -5,11 +9,42 @@ const eventRegister = function () {
     // document.querySelector("#id").addEventListener("click", handleIdInput);
     // document.querySelector("#name").addEventListener("click", handleNameInput);
 
+    // id input에 input 이벤트 핸들러 등록
+    document.querySelector("#id").addEventListener("input", handleChangeInput);
+
     document.querySelectorAll("form input")
         .forEach(function (input) {
             input.addEventListener("click", handleClickInput);
         });
 }
+
+// 아이디 중복 체크 이벤트 처리
+const handleChangeInput = async function (event) {
+    let inputId = event.target.value;
+    const url = `/mvc/member/idcheck?id=${inputId}`;
+    const object = null;
+    let resultMessage = null;
+    if (inputId.length >= 6 && inputId.length <= 10) {
+        const object = await httpRequest(url);
+        if (object.result) {
+            resultMessage = `<span style="color: blue">${object.message}</span>`;
+        } else {
+            resultMessage = `<span style="color: red">${object.message}</span>`;
+        }
+    } else {
+        resultMessage = `<span style="color: red">아이디는 6자 이상 10자 이하여야 합니다.</span>`;
+    }
+    showIdResult(resultMessage);
+}
+
+// 아이디 입력 관련 메시지 출력
+const showIdResult = function (message) {
+    const resultView = document.querySelector("#dupResult");
+    if (resultView) {
+        resultView.innerHTML = message;
+    }
+}
+
 
 // 회원 가입 이벤트 처리
 const handleSubmitButton = function (event) {
@@ -38,9 +73,9 @@ const handleSubmitButton = function (event) {
     }
 
     if (Validator.isEmpty(passwdInput.value)) {
-       alert('비밀번호를 입력하여 주세요.');
-       //showErrorMessage(passwdInput, "비밀번호를 입력하여 주세요.");
-       return;
+        alert('비밀번호를 입력하여 주세요.');
+        //showErrorMessage(passwdInput, "비밀번호를 입력하여 주세요.");
+        return;
     }
 
     if (passwdInput.value !== rePasswdInput.value) {

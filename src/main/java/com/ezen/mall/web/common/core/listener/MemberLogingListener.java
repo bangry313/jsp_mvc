@@ -6,20 +6,20 @@ import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
 
-//@WebListener
+@WebListener
 public class MemberLogingListener implements HttpSessionAttributeListener {
     @Override
-    public void attributeAdded(HttpSessionBindingEvent httpSessionBindingEvent) {
-        if (httpSessionBindingEvent.getName().equals("loginMember")) {
-            Member member = (Member)httpSessionBindingEvent.getValue();
+    public void attributeAdded(HttpSessionBindingEvent event) {
+        if (event.getName().equals("loginMember")) {
+            Member member = (Member)event.getValue();
             System.out.println("[Info] : " + member.getName() + "님 로그인하셨습니다.");
         }
     }
 
     @Override
-    public void attributeRemoved(HttpSessionBindingEvent httpSessionBindingEvent) {
-        if (httpSessionBindingEvent.getName().equals("loginMember")) {
-            Member member = (Member)httpSessionBindingEvent.getValue();
+    public void attributeRemoved(HttpSessionBindingEvent event) {
+        if (event.getName().equals("loginMember")) {
+            Member member = (Member)event.getValue();
             System.out.println("[Info] : " + member.getName() + "님 로그아웃하셨습니다.");
         }
     }

@@ -21,7 +21,7 @@ public class HomeHandler implements Handler {
 	public String process(Map<String, String> paramMap, Model model, HttpServletRequest request, HttpServletResponse response) {
 		String viewName = "/index";
 		List<Board> boardList = boardService.boardList();
-		request.setAttribute("boardList", boardList);
+		model.setAttribute("boardList", boardList);
 		return viewName;
 	}
 }

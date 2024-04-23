@@ -19,5 +19,8 @@ public interface MemberDao {
     
     // 회원 전체 목록 반환
     public List<Member> findByAll() throws SQLException;
+
+    // 아이디 중복 여부 반환
+    public boolean findCheckId(String id) throws SQLException;
     
 }

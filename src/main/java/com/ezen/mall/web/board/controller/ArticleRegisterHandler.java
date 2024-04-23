@@ -16,17 +16,17 @@ public class ArticleRegisterHandler implements Handler {
     @Override
     public String process(Map<String, String> paramMap, Model model, HttpServletRequest request, HttpServletResponse response) {
         String viewName = "/board/register";
-        Member loginMember = null;
-        // 로그인 사용자만이 보여주는 페이지
-        HttpSession session = request.getSession(false);
-        if(session != null){
-            loginMember = (Member) session.getAttribute("loginMember");
-        }
-        if(loginMember == null){
-            model.setAttribute("message", "게시판 글쓰기는 로그인 사용자만 가능합니다.");
-            model.setAttribute("referer", "/mvc/board/register");
-            viewName = "/member/login";
-        }
+//        Member loginMember = null;
+//        // 로그인 사용자만이 보여주는 페이지
+//        HttpSession session = request.getSession(false);
+//        if(session != null){
+//            loginMember = (Member) session.getAttribute("loginMember");
+//        }
+//        if(loginMember == null){
+//            model.setAttribute("message", "게시판 글쓰기는 로그인 사용자만 가능합니다.");
+//            model.setAttribute("referer", "/mvc/board/register");
+//            viewName = "/member/login";
+//        }
         return viewName;
     }
 }

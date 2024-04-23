@@ -24,8 +24,10 @@ public class LoginCheckFilter implements Filter {
         loginNoCheckList.add("/mvc/member/register");
         loginNoCheckList.add("/mvc/member/login");
         loginNoCheckList.add("/mvc/member/login-action");
+        loginNoCheckList.add("/mvc/member/idcheck");
         loginNoCheckList.add("/mvc/board/list");
         loginNoCheckList.add("/mvc/board/read");
+
     }
 
     @Override

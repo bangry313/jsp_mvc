@@ -41,6 +41,19 @@ public class MemberService {
         }
         return  loginMember;
     }
+
+    public boolean getDuplicatedId(String inputId){
+        boolean validated = false;
+        try {
+            if(!memberDao.findCheckId(inputId)){
+                validated = true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return validated;
+    }
+
     // 기타 등등
 
     public static void main(String[] args) throws SQLException {

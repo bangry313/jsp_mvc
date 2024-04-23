@@ -18,6 +18,9 @@ import java.util.Map;
  * 게시글 목록 처리
  */
 public class ArticleListHandler implements Handler {
+
+    private BoardService boardService = new BoardServiceImpl();
+
     @Override
     public String process(Map<String, String> paramMap, Model model, HttpServletRequest request, HttpServletResponse response) {
         String viewName = "/board/list";
@@ -46,9 +49,7 @@ public class ArticleListHandler implements Handler {
         // 사용자 검색값
         String searchValue = request.getParameter("value");
 
-        BoardService boardService = new BoardServiceImpl();
         List<Article> list = boardService.articleList(rowCount, requestPage, searchType, searchValue);
-
         model.setAttribute("list", list);
 
         // 페이지 처리를 위한 테이블 행의 갯수

@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ezen.mall.web.common.core.adapter.HandlerAdapter;
+import com.ezen.mall.web.common.core.adapter.RequestAPIHandlerAdapter;
 import com.ezen.mall.web.common.core.adapter.RequestMappingController3Adapter;
 import com.ezen.mall.web.common.core.adapter.RequestMappingHandlerAdapter;
 import com.ezen.mall.web.common.core.view.JSPView;
@@ -72,6 +73,7 @@ public class DispatcherServlet extends HttpServlet {
 	private void initHandlerAdapters() {
 		handlerAdapters.add(new RequestMappingHandlerAdapter());
 		handlerAdapters.add(new RequestMappingController3Adapter());
+		handlerAdapters.add(new RequestAPIHandlerAdapter());
 	}
 
 	/** 요청 방식에 상관없이 웹 클라이언트 모든 요청 처리 */
@@ -90,6 +92,9 @@ public class DispatcherServlet extends HttpServlet {
 			throw new IllegalArgumentException("[error] : HandlerAdapter를 찾을 수 없습니다. Handler = " + handler);
 		}
 		ModelAndView mav = handlerAdapter.handle(request, response, handler);
+		if(mav == null){
+			return;
+		}
 		// 뷰 실행
 		processView(request, response, mav);
 	}

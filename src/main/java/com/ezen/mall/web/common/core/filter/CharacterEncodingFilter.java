@@ -8,12 +8,12 @@ import java.io.IOException;
 /**
  * 문자 인코딩 서블릿 필터
  */
-//@WebFilter(
-//    urlPatterns = {"/mvc/*", "*.do"},
-//    initParams = {
-//        @WebInitParam(name = "encoding", value = "utf-8")
-//    }
-//)
+@WebFilter(
+    urlPatterns = {"/mvc/*"},
+    initParams = {
+        @WebInitParam(name = "encoding", value = "utf-8")
+    }
+)
 public class CharacterEncodingFilter implements Filter {
     private String encoding;
 

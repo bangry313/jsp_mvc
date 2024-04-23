@@ -9,9 +9,8 @@
   <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="/css/simple-sidebar.css" rel="stylesheet">
-
-<%--  <script src="/js/validator.js" defer></script>--%>
-<%--  <script src="/js/member.js" defer></script>--%>
+  <script src="/js/validator.js" defer></script>
+  <script src="/js/member.js" defer></script>
 
 </head>
 
@@ -54,6 +53,8 @@
                         <i class="bx bx-user-pin"></i>
                       </span>
                       <input type="text" class="form-control" required id="id" name="id"  autofocus placeholder="아이디"  value="${errors.id}" style="${not empty errors.id ? 'color:red' : ''}">
+
+                      <div id="dupResult" class="mt-2"></div>
                     </div>
 
                     <div class="input-icon-group mb-3">
